@@ -1,0 +1,40 @@
+.original1 {
+  animation: move1 40s linear infinite; /* 다른 브라우저 */
+}
+
+.clone {
+  animation: move2 40s linear infinite; /* 다른 브라우저 */
+}
+@media (max-width: 767px) {
+  .original1 {
+    animation: move1 40s linear infinite; /* 다른 브라우저 */
+  }
+  .clone {
+    animation: move2 40s linear infinite; /* 다른 브라우저 */
+  }
+}
+
+@keyframes move1 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* 복제용 */
+@keyframes move2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}

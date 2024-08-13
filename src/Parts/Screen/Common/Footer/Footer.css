@@ -1,0 +1,36 @@
+.Footer {
+  padding: 50px 100px;
+
+  background-color: #14126f;
+  display: flex;
+
+  color: white;
+  margin-top: 100px;
+}
+.Row {
+  flex: 1;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+.Menu {
+  display: flex;
+  justify-content: space-around;
+}
+.RightText {
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  .Footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+  }
+  .Row {
+    justify-content: center;
+    align-items: center;
+  }
+}
