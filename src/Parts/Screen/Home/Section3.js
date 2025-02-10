@@ -39,7 +39,7 @@ function Section3() {
         initMap();
       } else {
         const script = document.createElement("script");
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=53338744138cdcdcad2b9329065b897a&libraries=services&autoload=false`;
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=1e8088618b18b94cc6e84b41454e58fda&libraries=services&autoload=false`;
         script.async = true;
         document.head.appendChild(script);
 
