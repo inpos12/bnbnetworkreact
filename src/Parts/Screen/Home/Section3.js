@@ -1,6 +1,4 @@
-/* eslint-disable */
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 import {
   Container,
   Row,
@@ -36,59 +34,87 @@ const maprow = {
 
 function Section3() {
   useEffect(() => {
-    var mapContainer = document.getElementById("map"), // 지도를 표시할 div
-      mapOption = {
+    const loadKakaoMap = () => {
+      if (window.kakao && window.kakao.maps) {
+        initMap();
+      } else {
+        const script = document.createElement("script");
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=53338744138cdcdcad2b9329065b897a&libraries=services&autoload=false`;
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+          window.kakao.maps.load(() => {
+            initMap(); // 로드 완료 후 실행
+          });
+        };
+      }
+    };
+
+    const initMap = () => {
+      if (!window.kakao || !window.kakao.maps) {
+        console.error("카카오 맵 API 로드 실패");
+        return;
+      }
+
+      const mapContainer = document.getElementById("map");
+      if (!mapContainer) return;
+
+      const mapOption = {
         center: new window.kakao.maps.LatLng(
           37.56460225767364,
           127.06642673825462
-        ), // 지도의 중심좌표
-        level: 2, // 지도의 확대 레벨
+        ),
+        level: 2,
       };
 
-    var map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+      const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-    // 마커가 표시될 위치입니다
-    var markerPosition = new window.kakao.maps.LatLng(
-      37.56460225767364,
-      127.06642673825462
-    );
+      const marker = new window.kakao.maps.Marker({
+        position: mapOption.center,
+      });
 
-    // 마커를 생성합니다
-    var marker = new window.kakao.maps.Marker({
-      position: markerPosition,
-    });
+      marker.setMap(map);
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
+      const content = `
+        <div style="padding:5px; background:white; border-radius:5px; font-size:12px; font-weight:bold; color:black;">
+          비엔비네트웍스
+        </div>`;
 
-    var content =
-      "<div><h5 style=font-size:12px;font-weight:800;color:black;transform:translateY(-40px)>비엔비네트웍스</h5></div>";
-    var customOverlay = new window.kakao.maps.CustomOverlay({
-      position: markerPosition,
-      content: content,
-    });
-    customOverlay.setMap(map);
-    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-    // marker.setMap(null);
+      const customOverlay = new window.kakao.maps.CustomOverlay({
+        position: mapOption.center,
+        content: content,
+      });
+
+      customOverlay.setMap(map);
+    };
+
+    loadKakaoMap();
   }, []);
+
   return (
     <>
+      {/* 회사 정보 섹션 */}
       <Container style={container1}>
         <Row style={row}>
           <Ul>
             <li>
-              <Img src={Icon1}></Img>
+              <Img src={Icon1} alt="회사 아이콘" />
             </li>
             <li>
               <H3>회사위치안내</H3>
             </li>
             <li>
-              <Button>자세히보기</Button>
+              <Button
+                onClick={() => window.open("https://example.com", "_blank")}
+              >
+                자세히보기
+              </Button>
             </li>
           </Ul>
           <Ul>
             <li>
-              <Img src={Icon1}></Img>
+              <Img src={Icon1} alt="전화 아이콘" />
             </li>
             <li>
               <H3>02-2244-0830</H3>
@@ -102,6 +128,8 @@ function Section3() {
           </Ul>
         </Row>
       </Container>
+
+      {/* 오시는 길 안내 */}
       <Container style={container2}>
         <Row style={maprow}>
           <H2 $color="black">오시는길</H2>
@@ -113,15 +141,16 @@ function Section3() {
           </P>
         </Row>
       </Container>
+
+      {/* 지도 섹션 */}
       <Container style={{ marginTop: "50px" }}>
         <Row>
           <MapContainer>
             <div id="map" style={{ width: "1200px", height: "600px" }}></div>
             <MapText>
-              <H4>04320</H4> <H4>서울 용산구 한강대로 405</H4>
-              <H4>
-                TEL : 010-1234-1234 &nbsp;&nbsp;&nbsp;FAX : 070-1234-1234{" "}
-              </H4>
+              <H4>04320</H4>
+              <H4>서울 용산구 한강대로 405</H4>
+              <H4>TEL : 010-1234-1234 &nbsp;&nbsp;&nbsp;FAX : 070-1234-1234</H4>
             </MapText>
           </MapContainer>
         </Row>
@@ -129,4 +158,5 @@ function Section3() {
     </>
   );
 }
+
 export default Section3;
