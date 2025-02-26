@@ -1,6 +1,6 @@
 # BNB NetWorks (React)
 # 프로젝트 소개
-React를 활용하여 회사 사이트를 코드 재사용성을 높이면서 제작한 사이트 입니다.
+React를 활용하여 회사 사이트를 코드 재사용성을 높이면서 제작한 1인제작 사이트 입니다.
 # 기술
 + ### Front-end
   + React, JavaScript, Css
