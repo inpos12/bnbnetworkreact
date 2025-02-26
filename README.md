@@ -8,6 +8,10 @@ React를 활용하여 회사 사이트를 코드 재사용성을 높이면서 �
   + React Router, Styled-Components
 + ### Api
   + Kakao Maps Api
+# Styled Components
++ Styled Components를 활용하여 UI 컴포넌트를 재사용 가능한 스타일링 요소로 분리하였습니다.
++ 각 스타일을 컴포넌트화하여, 코드의 중복을 줄이고, 유지보수성을 향상시켰습니다..
+
 # 사이트 소개
 + ### 반응형 디자인
   + **미디어 쿼리(Media Queries)**를 사용하여 다양한 화면 크기에서 최적화된 레이아웃을 제공하도록 설계하였습니다.
